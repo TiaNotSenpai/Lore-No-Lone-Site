@@ -1,0 +1,10 @@
+# File di configurazione di Netlify
+
+# Questo dice a Netlify che vogliamo che processi i nostri file.
+[build.processing]
+  skip_processing = false
+
+# Questa è la sezione specifica per l'ottimizzazione delle immagini.
+[build.processing.images]
+  # Comprime le immagini JPEG, PNG e GIF
+  compress = true
