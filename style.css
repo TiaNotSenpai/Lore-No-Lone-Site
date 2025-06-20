@@ -1,0 +1,313 @@
+/* ---- GOOGLE FONT ---- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+/* ---- VARIABILI COLORI & STILI GLOBALI ---- */
+:root {
+    --colore-sfondo: #0d1117; /* Blu notte quasi nero */
+    --colore-testo: #c9d1d9;   /* Bianco sporco, meno stancante */
+    --colore-primario: #33b0ff; /* Blu elettrico per accenti */
+    --colore-hover: #58a6ff;   /* Blu per hover */
+    --font-principale: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-principale);
+    background-color: var(--colore-sfondo);
+    color: var(--colore-testo);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ---- HEADER & NAVIGAZIONE ---- */
+.header {
+    background-color: rgba(13, 17, 23, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+}
+
+.nav-menu li {
+    margin-left: 2rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--colore-testo);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--colore-primario);
+}
+
+/* Per il menu mobile */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+
+/* ---- LAYOUT GENERALE & SEZIONI ---- */
+.main-content {
+    padding-top: 100px; /* Spazio per l'header fisso */
+    padding-bottom: 50px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Animazione di fade-in */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    font-size: 1rem;
+    max-width: 650px;
+    margin: 0 auto 1.5rem auto;
+    font-weight: 300;
+}
+
+/* ---- ELEMENTI SPECIFICI ---- */
+
+/* Bottone Principale */
+.btn-primario {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: var(--colore-primario);
+    color: #0d1117;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 5px;
+    border: 2px solid var(--colore-primario);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primario:hover {
+    background-color: transparent;
+    color: var(--colore-primario);
+}
+
+/* Home Page */
+#hero {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url('images/lago-notte.jpg') no-repeat center center/cover;
+    position: relative;
+    padding: 0;
+}
+
+#hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 17, 23, 0.7);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    letter-spacing: 3px;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--colore-testo);
+    margin-bottom: 2rem;
+}
+
+/* Pagina Musica */
+.music-container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    text-align: left;
+}
+.ep-cover img {
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+}
+.spotify-player {
+    flex-grow: 1;
+}
+
+/* Pagina Biografia */
+.bio-container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    text-align: left;
+}
+.bio-image img {
+    width: 350px;
+    height: auto;
+    border-radius: 5px;
+}
+.bio-text p {
+    max-width: 100%;
+}
+
+/* Pagina Galleria */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Pagina Contatti */
+.contact-info a {
+    color: var(--colore-primario);
+    text-decoration: none;
+    font-weight: 700;
+}
+.social-links {
+    margin-top: 2rem;
+}
+.social-links a {
+    margin: 0 1rem;
+    font-size: 1.8rem;
+    color: var(--colore-testo);
+    transition: color 0.3s ease;
+}
+.social-links a:hover {
+    color: var(--colore-primario);
+}
+
+/* ---- FOOTER ---- */
+.footer {
+    text-align: center;
+    padding: 2rem 5%;
+    background-color: #010409;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+
+/* ---- RESPONSIVE (MOBILE) ---- */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    .hero-content h1 { font-size: 3rem; }
+    
+    .nav-menu {
+        position: fixed;
+        top: 81px; /* Altezza header */
+        right: -100%;
+        width: 60%;
+        height: calc(100vh - 81px);
+        background-color: var(--colore-sfondo);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease-in-out;
+    }
+    
+    .nav-menu.active {
+        right: 0;
+    }
+    
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-menu li {
+        margin: 1.5rem 0;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .music-container, .bio-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .bio-container {
+        flex-direction: column-reverse; /* Immagine sotto il testo */
+    }
+}
