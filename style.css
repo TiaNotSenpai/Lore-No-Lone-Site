@@ -105,6 +105,73 @@ body {
     transform: translateY(0);
 }
 
+.animated-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Lo mettiamo dietro al .hero-content */
+}
+
+/* Creiamo i nostri "strati" di onde usando i pseudo-elementi */
+.animated-bg::before,
+.animated-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; /* Li facciamo più larghi dello schermo per poterli muovere */
+    height: 200%;
+    background-repeat: no-repeat;
+    opacity: 0.4; /* Li rendiamo semi-trasparenti */
+}
+
+/* STRATO 1: ONDE LENTISSIME */
+.animated-bg::before {
+    background-image:
+        radial-gradient(circle at 20% 30%, var(--colore-primario), transparent 25%),
+        radial-gradient(circle at 80% 70%, #005f99, transparent 25%);
+    background-size: 50% 50%;
+    animation: moveWaves 30s linear infinite;
+}
+
+/* STRATO 2: ONDE PIÙ VELOCI E IN DIREZIONE OPPOSTA */
+.animated-bg::after {
+    background-image:
+        radial-gradient(circle at 50% 90%, var(--colore-primario), transparent 25%),
+        radial-gradient(circle at 10% 10%, #005f99, transparent 20%);
+    background-size: 40% 40%;
+    opacity: 0.3;
+    animation: moveWaves 25s linear infinite reverse; /* Invertiamo la direzione */
+}
+
+/* Il keyframe che muove gli sfondi */
+@keyframes moveWaves {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(-50%, -50%); /* Muove gli sfondi diagonalmente */
+    }
+}
+
+/* Le animazioni del testo (.hero-content, #hero-title, etc.) rimangono le stesse! */
+.hero-content {
+    position: relative; /* Assicura che sia sopra lo sfondo animato */
+    z-index: 1;
+}
+
+/* ---- STILI PER IL CANVAS DELLE PARTICELLE ---- */
+#particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Dietro al testo, ma può stare sopra o sotto lo sfondo CSS */
+}
+
 h1 {
     font-size: 3rem;
     font-weight: 700;
@@ -156,7 +223,8 @@ p {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: url('images/lago-notte.jpg') no-repeat center center/cover;
+    background-color: var(--colore-sfondo); /* Il colore base è il nostro blu notte */
+    overflow: hidden; /* Importante per non vedere le sfumature uscire dai bordi */
     position: relative;
     padding: 0;
 }
